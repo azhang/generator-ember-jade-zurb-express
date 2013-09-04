@@ -1,6 +1,6 @@
 var <%= _.classify(appname) %> = window.<%= _.classify(appname) %> = Ember.Application.create();
 
-EmberApp.IndexView = Ember.View.extend({
+<%= _.classify(appname) %>.IndexView = Ember.View.extend({
  didInsertElement: function() {
   this.$().foundation();
  }
