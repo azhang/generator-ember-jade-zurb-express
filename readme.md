@@ -36,7 +36,7 @@ You should have one path each for:
 
 ## Usage
 
-* `npm install -g generator-ember`
+* `npm install -g generator-ember-jade-zurb`
 * `mkdir webapp && cd webapp`
 * `yo ember`
 * `npm install -g grunt-mocha` 

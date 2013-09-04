@@ -2,7 +2,8 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "dependencies": {
-    "jquery": "~1.9.1"
+    "jquery": "~2.0.3",
+    "foundation": "~4.3.1"
     <% if (compassBootstrap) { %>,
     "bootstrap-sass": "~2.3.1"
     <% } %>
@@ -10,6 +11,6 @@
   "resolutions": {
   },
   "devDependencies": {<% if (testFramework === 'mocha') { %>
-    "ember-mocha-adapter": "0.1.1"<% } %>
+    "ember-mocha-adapter": "0.1.2"<% } %>
   }
 }

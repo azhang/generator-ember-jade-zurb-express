@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
         watch: {
             emberTemplates: {
-                files: '<%%= yeoman.app %>/templates/**/*.hbs',
+                files: '.tmp/templates/**/*.hbs',
                 tasks: ['emberTemplates']
             },
             coffee: {
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     '.tmp/scripts/*.js',
-                    '<%%= yeoman.app %>/*.html',
+                    '.tmp/*.html',
                     '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css',
                     '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
@@ -208,7 +208,7 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: '<%%= yeoman.app %>/index.html',
+            html: '.tmp/index.html',
             options: {
                 dest: '<%%= yeoman.dist %>'
             }
@@ -265,7 +265,7 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%%= yeoman.app %>',
+                    cwd: '.tmp',
                     src: '*.html',
                     dest: '<%%= yeoman.dist %>'
                 }]
@@ -316,13 +316,13 @@ module.exports = function (grunt) {
         emberTemplates: {
             options: {
                 templateName: function (sourceFile) {
-                    var templatePath = yeomanConfig.app + '/templates/';
+                    var templatePath = '.tmp' + '/templates/';
                     return sourceFile.replace(templatePath, '');
                 }
             },
             dist: {
                 files: {
-                    '.tmp/scripts/compiled-templates.js': '<%%= yeoman.app %>/templates/{,*/}*.hbs'
+                    '.tmp/scripts/compiled-templates.js': '.tmp/templates/{,*/}*.hbs'
                 }
             }
         },<% if (!options.coffee) { %>
@@ -348,7 +348,27 @@ module.exports = function (grunt) {
                 src: ['.tmp/scripts/app.js'],
                 dest: '.tmp/scripts/combined-scripts.js'
             }
-        }<% } %>
+        }<% } %>,
+        jade: {
+            dist: {
+                options: {
+                    pretty: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.app %>',
+                    dest: '.tmp',
+                    src: '*.jade',
+                    ext: '.html'
+                },{
+                  expand: true,
+                  cwd: '<%%= yeoman.app %>/templates',
+                  dest: '.tmp/templates',
+                  src: '*.jade',
+                  ext: '.hbs'
+                }]
+            }
+        }
     });
 
     grunt.registerTask('server', function (target) {
@@ -358,6 +378,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'jade',
             'concurrent:server',
             'neuter:app',
             'connect:livereload',
@@ -378,6 +399,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'jade',
         'useminPrepare',
         'concurrent:dist',
         'neuter:app',

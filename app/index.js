@@ -29,7 +29,7 @@ var EmberGenerator = module.exports = function EmberGenerator(args, options) {
   // resolved to mocha by default (could be switched to jasmine for instance)
   this.hookFor('test-framework', { as: 'app' });
 
-  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
+  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.jade'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
   // this holds the list of scripts we want to include in components.js
@@ -37,7 +37,21 @@ var EmberGenerator = module.exports = function EmberGenerator(args, options) {
     'bower_components/jquery/jquery.js',
     'bower_components/handlebars/handlebars.runtime.js',
     'bower_components/ember/ember-1.0.0-rc.6.1.js',
-    'bower_components/ember-data-shim/ember-data.js'
+    'bower_components/ember-data-shim/ember-data.js',
+    'bower_components/foundation/js/foundation/foundation.js',
+    'bower_components/foundation/js/foundation/foundation.alerts.js',
+    'bower_components/foundation/js/foundation/foundation.clearing.js',
+    'bower_components/foundation/js/foundation/foundation.cookie.js',
+    'bower_components/foundation/js/foundation/foundation.dropdown.js',
+    'bower_components/foundation/js/foundation/foundation.forms.js',
+    'bower_components/foundation/js/foundation/foundation.joyride.js',
+    'bower_components/foundation/js/foundation/foundation.magellan.js',
+    'bower_components/foundation/js/foundation/foundation.orbit.js',
+    'bower_components/foundation/js/foundation/foundation.placeholder.js',
+    'bower_components/foundation/js/foundation/foundation.reveal.js',
+    'bower_components/foundation/js/foundation/foundation.section.js',
+    'bower_components/foundation/js/foundation/foundation.tooltips.js',
+    'bower_components/foundation/js/foundation/foundation.topbar.js'
   ];
 
   this.on('end', function () {
@@ -124,8 +138,8 @@ EmberGenerator.prototype.gruntfile = function gruntfile() {
 };
 
 EmberGenerator.prototype.templates = function templates() {
-  this.copy('hbs/application.hbs', 'app/templates/application.hbs');
-  this.copy('hbs/index.hbs', 'app/templates/index.hbs');
+  this.copy('hbs/application.jade', 'app/templates/application.jade');
+  this.copy('hbs/index.jade', 'app/templates/index.jade');
 };
 
 EmberGenerator.prototype.writeIndex = function writeIndex() {
@@ -133,8 +147,7 @@ EmberGenerator.prototype.writeIndex = function writeIndex() {
   if (this.compassBootstrap) {
     mainCssFiles.push('styles/style.css');
   } else {
-    mainCssFiles.push('styles/normalize.css');
-    mainCssFiles.push('styles/style.css');
+    mainCssFiles.push('styles/app.css');
   }
 
   this.indexFile = this.appendStyles(this.indexFile, 'styles/main.css', mainCssFiles);
@@ -168,7 +181,7 @@ EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
 };
 
 EmberGenerator.prototype.all = function all() {
-  this.write('app/index.html', this.indexFile);
+  this.write('app/index.jade', this.indexFile);
 
   if (this.compassBootstrap) {
     this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
