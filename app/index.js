@@ -186,8 +186,7 @@ EmberGenerator.prototype.all = function all() {
   if (this.compassBootstrap) {
     this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
   } else {
-    this.copy('styles/normalize.css', 'app/styles/normalize.css');
-    this.copy('styles/style.css', 'app/styles/style.css');
+    this.copy('styles/app.scss', 'app/styles/app.scss');
   }
 
   this.copy('scripts/libs/ember-1.0.0-rc.6.1.js', 'app/bower_components/ember/ember-1.0.0-rc.6.1.js');
