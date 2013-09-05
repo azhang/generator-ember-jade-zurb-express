@@ -182,8 +182,9 @@ EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
 };
 
 EmberGenerator.prototype.all = function all() {
+  var _this = this;
   html2jade.convertHtml(this.indexFile, {}, function(err, jade){
-    this.write('app/index.jade', jade);
+    _this.write('app/index.jade', jade);
   });
   //this.write('app/index.jade', this.indexFile);
 
