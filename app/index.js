@@ -2,6 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var html2jade = require('html2jade');
 
 var EmberGenerator = module.exports = function EmberGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -29,7 +30,7 @@ var EmberGenerator = module.exports = function EmberGenerator(args, options) {
   // resolved to mocha by default (could be switched to jasmine for instance)
   this.hookFor('test-framework', { as: 'app' });
 
-  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.jade'));
+  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
   // this holds the list of scripts we want to include in components.js
@@ -181,7 +182,10 @@ EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
 };
 
 EmberGenerator.prototype.all = function all() {
-  this.write('app/index.jade', this.indexFile);
+  html2jade.convertHtml(this.indexFile, {}, function(err, jade){
+    this.write('app/index.jade', jade);
+  });
+  //this.write('app/index.jade', this.indexFile);
 
   if (this.compassBootstrap) {
     this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
