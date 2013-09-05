@@ -59,6 +59,13 @@ module.exports = function (grunt) {
                     '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css',
                     '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
+            },
+            jade: {
+                files: [
+                    '<%%= yeoman.app %>/*.jade',
+                    '<%%= yeoman.app %>/templates/*.jade'
+                ],
+                tasks: ['jade']
             }
         },
         connect: {

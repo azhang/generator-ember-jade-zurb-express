@@ -1,18 +1,18 @@
-div
-  .navbar.navbar-fixed-top
-    .navbar-inner
-      .container-fluid
-        .brand
-          | Your App
-  #main.container-fluid
-    .row-fluid
-      div
-        .span3
-          .well.sidebar-nav
-            span.nav-header Colors
-            ul.nav.nav-list
-              | {{#each item in controller}}
-              li {{item}}
-              | {{/each}}
-        .span9
-          | {{outlet}}
+nav.top-bar
+  ul.title-area
+    li.name
+      h1
+        a Your App
+    li.toggle-topbar menu-icon
+      a(href="#")
+        span Menu
+
+.row
+  .large-3.columns
+    h2 Colors
+    ul.side-nav
+      | {{#each item in controller}}
+      li {{item}}
+      | {{/each}}
+  .large-9
+    | {{outlet}}
