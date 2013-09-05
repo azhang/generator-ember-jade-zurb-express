@@ -35,7 +35,7 @@ describe('Basics', function () {
       }
 
       this.ember = {};
-      this.ember.app = helpers.createGenerator('ember:app', [
+      this.ember.app = helpers.createGenerator('ember-jade-zurb:app', [
         '../../router',
         '../../app', [
           helpers.createDummyGenerator(),

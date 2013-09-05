@@ -24,7 +24,7 @@ describe('subgenerators', function () {
 
   it('router', function (done) {
     this.router = {};
-    this.router = helpers.createGenerator('ember:router', ['../../router']);
+    this.router = helpers.createGenerator('ember-jade-zurb:router', ['../../router']);
 
     filesDoNotExist([this.router.router_file]);
 
@@ -38,7 +38,7 @@ describe('subgenerators', function () {
 
   it('view', function (done) {
     this.view = {};
-    this.view = helpers.createGenerator('ember:view', ['../../view'], 'user');
+    this.view = helpers.createGenerator('ember-jade-zurb:view', ['../../view'], 'user');
 
     filesDoNotExist(FILES_GENERATED_BY_VIEW_SUBGEN);
 
@@ -54,7 +54,7 @@ describe('subgenerators', function () {
 
   it('controller', function (done) {
     this.controller = {};
-    this.controller = helpers.createGenerator('ember:controller', ['../../controller','../../view','../../router'], 'user');
+    this.controller = helpers.createGenerator('ember-jade-zurb:controller', ['../../controller','../../view','../../router'], 'user');
 
     filesDoNotExist(FILES_GENERATED_BY_CONTROLLER_SUBGEN);
 
