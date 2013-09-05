@@ -1,0 +1,7 @@
+h1 <%= pluralized_name %>
+
+ul
+  | {{#each model}}
+  li {{#linkTo '<%= slugified_name %>' this}}{{this.id}}{{/linkTo}}
+  | {{/each}}
+| {{outlet}}

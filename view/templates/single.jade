@@ -1,0 +1,11 @@
+h1 <%= name %>
+table
+  | {{#each model.attributes}}
+  tr
+    td
+      strong {{this.key}}:
+    td
+      | {{this.value}}
+  | {{/each}}
+| {{#linkTo 'user.edit' model}}Change{{/linkTo}}
+| {{outlet}}

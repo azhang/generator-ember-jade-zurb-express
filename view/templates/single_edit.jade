@@ -1,0 +1,14 @@
+h1 <%= name %>
+
+table
+  | {{#each model.attributes}}
+  tr
+    td
+      strong {{this.key}}:
+    td
+      | {{view <%= _.classify(appname) %>.BoundTextFieldView contentBinding="this"}}
+  | {{/each}}
+
+<button {{action 'save'}}>Update</button>
+
+| {{outlet}}
