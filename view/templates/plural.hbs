@@ -1,9 +1,0 @@
-<h1><%= pluralized_name %></h1>
-
-<ul>
- {{#each model}}
- <li>{{#linkTo '<%= slugified_name %>' this}}{{this.id}}{{/linkTo}}</li>
-  {{/each}}
-</ul>
-
-{{outlet}}
