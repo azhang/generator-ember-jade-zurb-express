@@ -151,7 +151,11 @@ EmberGenerator.prototype.writeIndex = function writeIndex() {
     mainCssFiles.push('styles/app.css');
   }
 
+  var headScripts = [];
+  headScripts.push('bower_components/foundation/js/vendor/custom.modernizr.js');
+
   this.indexFile = this.appendStyles(this.indexFile, 'styles/main.css', mainCssFiles);
+  this.indexFile = this.appendHeadScripts(this.indexFile, 'scripts/header.js', headScripts);
 
   this.indexFile = this.appendScripts(this.indexFile, 'scripts/components.js', this.bowerScripts);
 
@@ -183,10 +187,11 @@ EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
 
 EmberGenerator.prototype.all = function all() {
   var _this = this;
+  var cb = this.async();
   html2jade.convertHtml(this.indexFile, {}, function(err, jade){
     _this.write('app/index.jade', jade);
+    cb();
   });
-  //this.write('app/index.jade', this.indexFile);
 
   if (this.compassBootstrap) {
     this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
@@ -201,4 +206,31 @@ EmberGenerator.prototype.all = function all() {
   this.copy(this._getJSPath('scripts/app'), this._getJSPath('app/scripts/app'));
   this.copy(this._getJSPath('scripts/store'), this._getJSPath('app/scripts/store'));
   this.copy(this._getJSPath('scripts/routes/application_route'), this._getJSPath('app/scripts/routes/application_route'));
+};
+
+EmberGenerator.prototype.appendHeadScripts = function appendHeadScripts(htmlOrOptions, optimizedPath, sourceFileList, attrs, searchPath) {
+  if (typeof sourceFileList === "undefined")
+    return;
+  var blocks, updatedContent;
+  var html = htmlOrOptions;
+  var files = '';
+
+  if (typeof htmlOrOptions === 'object') {
+    html = htmlOrOptions.html;
+    optimizedPath = htmlOrOptions.optimizedPath;
+    sourceFileList = htmlOrOptions.sourceFileList;
+    attrs = htmlOrOptions.attrs;
+    searchPath = htmlOrOptions.searchPath;
+  }
+
+  attrs = this.attributes(attrs);
+
+  sourceFileList.forEach(function (el) {
+    files += '        <script ' + attrs + ' src="' + el + '"></script>\n';
+  });
+  blocks = this.generateBlock('js', optimizedPath, files, searchPath);
+  updatedContent = this.append(html, 'head', blocks);
+
+  // cleanup trailing whitespace
+  return updatedContent.replace(/[\t ]+$/gm, '');
 };
