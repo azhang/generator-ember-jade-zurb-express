@@ -38,7 +38,7 @@ You should have one path each for:
 
 * `npm install -g generator-ember-jade-zurb`
 * `mkdir webapp && cd webapp`
-* `yo ember`
+* `yo ember-jade-zurb`
 * `npm install -g grunt-mocha` 
 * `grunt server`
 
