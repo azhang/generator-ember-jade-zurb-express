@@ -5,7 +5,7 @@ var yeoman = require('yeoman-generator');
 var ModelGenerator = module.exports = function ModelGenerator(args, options, config) {
   yeoman.generators.NamedBase.apply(this, arguments);
 
-  this.hookFor('ember:controller', {
+  this.hookFor('ember-jade-zurb:controller', {
     args: args
   });
 

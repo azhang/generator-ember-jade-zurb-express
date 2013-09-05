@@ -7,7 +7,7 @@ var fleck = require('fleck');
 var RouterGenerator = module.exports = function RouterGenerator(args, options, config) {
   // NamedBase needs a name, which is usually the first param passed in the script
   // https://github.com/yeoman/generator/pull/231
-  args.push('ember:router');
+  args.push('ember-jade-zurb:router');
   yeoman.generators.NamedBase.apply(this, arguments);
 
   this.options.controller_files = [];

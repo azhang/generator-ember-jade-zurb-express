@@ -7,10 +7,10 @@ var fleck = require('fleck');
 var ControllerGenerator = module.exports = function ControllerGenerator(args, options, config) {
   yeoman.generators.NamedBase.apply(this, arguments);
   this.pluralized_name = fleck.pluralize(this.name);
-  this.hookFor('ember:view', {
+  this.hookFor('ember-jade-zurb:view', {
     args: args
   });
-  this.hookFor('ember:router');
+  this.hookFor('ember-jade-zurb:router');
 };
 
 // TODO: add option for Array or Object controller
