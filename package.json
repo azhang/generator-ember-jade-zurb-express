@@ -1,7 +1,7 @@
 {
   "name": "generator-ember-jade-zurb-express",
-  "version": "0.0.7",
-  "description": "Yeoman generator for Ember Jade Zurb",
+  "version": "0.0.1",
+  "description": "Yeoman generator for Ember Jade Zurb Express",
   "keywords": [
     "yeoman-generator",
     "scaffold",
