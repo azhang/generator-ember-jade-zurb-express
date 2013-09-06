@@ -208,6 +208,10 @@ EmberGenerator.prototype.all = function all() {
   this.copy(this._getJSPath('scripts/routes/application_route'), this._getJSPath('app/scripts/routes/application_route'));
 };
 
+EmberGenerator.prototype.express = function express( ){
+  this.copy('server', 'server');
+};
+
 EmberGenerator.prototype.appendHeadScripts = function appendHeadScripts(htmlOrOptions, optimizedPath, sourceFileList, attrs, searchPath) {
   if (typeof sourceFileList === "undefined")
     return;
