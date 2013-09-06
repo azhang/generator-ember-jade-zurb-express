@@ -1,4 +1,4 @@
-// Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
+// Generated on <%%= (new Date).toISOString().split('T')[0] %> using <%%= pkg.name %> <%%= pkg.version %>
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
@@ -270,6 +270,17 @@ module.exports = function (grunt) {
     },
     // Put files not handled in other tasks here
     copy: {
+      bower_components: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%%= yeoman.app %>/bower_components',
+          dest: '.tmp/bower_components',
+          src: [
+            '**'
+          ]
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -335,6 +346,24 @@ module.exports = function (grunt) {
       }
     },
     jade: {
+      server: {
+        options: {
+          pretty: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%%= yeoman.app %>',
+          dest: '.tmp',
+          src: '*.jade',
+          ext: '.html'
+        }, {
+          expand: true,
+          cwd: '<%%= yeoman.app %>/templates',
+          dest: '.tmp/templates',
+          src: '*.jade',
+          ext: '.hbs'
+        }]
+      },
       dist: {
         options: {
           pretty: true
@@ -363,7 +392,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'jade',
+      'jade:server',
       'concurrent:server',
       'neuter:app',
       'connect:livereload',
@@ -382,14 +411,15 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'jade',
+    'jade:dist',
+    'copy:bower_components',
     'useminPrepare',
     'concurrent:dist',
     'neuter:app',
     'concat',
     'cssmin',
     'uglify',
-    'copy',
+    'copy:dist',
     'rev',
     'usemin'
   ]);

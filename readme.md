@@ -36,9 +36,9 @@ You should have one path each for:
 
 ## Usage
 
-* `npm install -g generator-ember-jade-zurb`
+* `npm install -g generator-ember-jade-zurb-express`
 * `mkdir webapp && cd webapp`
-* `yo ember-jade-zurb`
+* `yo ember-jade-zurb-express`
 * `npm install -g grunt-mocha` 
 * `grunt server`
 

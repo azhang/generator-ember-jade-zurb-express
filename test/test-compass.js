@@ -29,7 +29,7 @@ describe('Compass', function () {
         return done(err);
       }
       this.ember = {};
-      this.ember.app = helpers.createGenerator('ember-jade-zurb:app', [
+      this.ember.app = helpers.createGenerator('ember-jade-zurb-express:app', [
         '../../router',
         '../../app', [
           helpers.createDummyGenerator(),

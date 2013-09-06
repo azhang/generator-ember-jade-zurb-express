@@ -11,7 +11,7 @@ var EmberGenerator = module.exports = function EmberGenerator(args, options) {
     this.appname += '_app';
   }
 
-  this.hookFor('ember-jade-zurb:router');
+  this.hookFor('ember-jade-zurb-express:router');
 
   // setup the test-framework property, Gruntfile template will need this
   this.testFramework = options['test-framework'] || 'mocha';
@@ -209,7 +209,7 @@ EmberGenerator.prototype.all = function all() {
 };
 
 EmberGenerator.prototype.express = function express( ){
-  this.copy('server', 'server');
+  this.directory('server', 'server');
 };
 
 EmberGenerator.prototype.appendHeadScripts = function appendHeadScripts(htmlOrOptions, optimizedPath, sourceFileList, attrs, searchPath) {

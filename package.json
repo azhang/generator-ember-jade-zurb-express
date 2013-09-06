@@ -1,5 +1,5 @@
 {
-  "name": "generator-ember-jade-zurb",
+  "name": "generator-ember-jade-zurb-express",
   "version": "0.0.7",
   "description": "Yeoman generator for Ember Jade Zurb",
   "keywords": [
@@ -12,13 +12,13 @@
     "jade",
     "zurb"
   ],
-  "homepage": "https://github.com/aaronz8/generator-ember-jade-zurb",
-  "bugs": "https://github.com/aaronz8/generator-ember-jade-zurb/issues",
+  "homepage": "https://github.com/aaronz8/generator-ember-jade-zurb-express",
+  "bugs": "https://github.com/aaronz8/generator-ember-jade-zurb-express/issues",
   "author": "",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/aaronz8/generator-ember-jade-zurb.git"
+    "url": "git://github.com/aaronz8/generator-ember-jade-zurb-express.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"

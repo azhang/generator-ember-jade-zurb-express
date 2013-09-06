@@ -30,7 +30,7 @@ describe('Model', function () {
   it('scaffolds', function (done) {
     this.model = {};
     var cmd_line_args = ['User', 'name:string', 'zipcode:number'];
-    this.model = helpers.createGenerator('ember-jade-zurb:model', 
+    this.model = helpers.createGenerator('ember-jade-zurb-express:model', 
        ['../../model','../../controller','../../view','../../router'],
        cmd_line_args);
 
@@ -48,7 +48,7 @@ describe('Model', function () {
     // there has to be a better way
     // to structure/include the following...
     this.router = {};
-    this.router = helpers.createGenerator('ember-jade-zurb:router', ['../../router']);
+    this.router = helpers.createGenerator('ember-jade-zurb-express:router', ['../../router']);
 
     filesDoNotExist([this.router.router_file]);
 
